@@ -15,13 +15,15 @@ namespace tutorapp
 
             // create a pack of cards
             pack pack = new pack(52);
+            tutorial tutorial = new tutorial();
 
             bool quit = false;
             while (!quit)
             {
                 Console.WriteLine("\nPlease Choose an option: ");
                 Console.WriteLine("1. Start a new game");
-                Console.WriteLine("2. Quit");
+                Console.WriteLine("2. Show the Tutorial");
+                Console.WriteLine("3. Quit");
                 Console.WriteLine("\nChoose an option number: ");
 
                 //get user input
@@ -40,19 +42,19 @@ namespace tutorapp
                             {
                                 
                                 // create an equation
-                                int num1 = hand[0].Value;
-                                int num2 = hand[1].Value;
-                                string op = hand[2].Operator;
-                                Console.WriteLine($"What is {num1} {op} {num2}?");
+                                int num1 = hand[0].Value; // creating a variable for the first number
+                                int num2 = hand[1].Value; // creating a variable for the second number
+                                string op = hand[2].Operator; // creating a variable for the operator
+                                Console.WriteLine($"What is {num1} {op} {num2}?"); // creating the equation
                                 Console.Write("Enter your answer: ");
                                 int answer;
-                                while (!int.TryParse(Console.ReadLine(), out answer))
+                                while (!int.TryParse(Console.ReadLine(), out answer)) // creating a loop to check if the input is an integer
                                 {
                                     Console.WriteLine("Invalid input");
                                     Console.Write("Enter your answer: ");
                                 }
 
-                                if (Calculate(num1, num2, op) == answer)
+                                if (Calculate(num1, num2, op) == answer) // if the answer is correct
                                 {
                                     Console.WriteLine("Correct!");
                                     Console.WriteLine("Would you like to: ");
@@ -63,8 +65,8 @@ namespace tutorapp
                                     Console.WriteLine();
                                     switch (input2)
                                     {
-                                        case "1":
-                                            hand = pack.Deal();
+                                        case "1": // deal 3 cards again
+                                            hand = pack.Deal(); // same as above
                                             num1 = hand[0].Value;
                                             num2 = hand[1].Value;
                                             op = hand[2].Operator;
@@ -87,8 +89,10 @@ namespace tutorapp
                                                 
                                             }
                                             break;
-                                        case "2":
+
+                                        case "2": // return to main menu
                                             break;
+
                                         default:
                                             Console.WriteLine("Invalid input. Returning to main menu.");
                                             break;
@@ -100,11 +104,13 @@ namespace tutorapp
                                
                             }
                             break;
-
                         case 2:
+                            tutorial.DisplayInstructions();
+                                break;
+                        case 3:
                             //quit
-                            quit = true;
                             Console.WriteLine("Thank you for using the Math Tutoring Application!");
+                            quit = true;
                             break;
 
                         default:
@@ -117,7 +123,7 @@ namespace tutorapp
 
         }
 
-        private static int Calculate(int num1, int num2, string op)
+        private static int Calculate(int num1, int num2, string op) // creating a method to calculate the answer
         {
             int answer = 0;
             switch (op)
