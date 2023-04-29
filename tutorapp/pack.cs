@@ -69,7 +69,7 @@ namespace tutorapp
             }
 
             // deal 1 operator card
-            if (cards.Count > 0)
+            if (cards.Count > 0) // same as above but for operator cards
             {
                 Card card = cards[0];
                 cards.RemoveAt(0);
