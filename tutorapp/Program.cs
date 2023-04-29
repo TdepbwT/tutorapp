@@ -43,28 +43,58 @@ namespace tutorapp
                                 int num1 = hand[0].Value;
                                 int num2 = hand[1].Value;
                                 string op = hand[2].Operator;
-                                int answer = Calculate(num1, num2, op);
-
                                 Console.WriteLine($"What is {num1} {op} {num2}?");
-                                string input2 = Console.ReadLine();
-                                int guess;
-                                if (int.TryParse(input2, out guess))
-                                {
-
-                                    if (guess == answer)
-                                    {
-                                        Console.WriteLine("Correct!");
-
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine($"Incorrect! The answer was {answer}");
-                                    }
-                                }
-                                else
+                                Console.Write("Enter your answer: ");
+                                int answer;
+                                while (!int.TryParse(Console.ReadLine(), out answer))
                                 {
                                     Console.WriteLine("Invalid input");
+                                    Console.Write("Enter your answer: ");
                                 }
+
+                                if (Calculate(num1, num2, op) == answer)
+                                {
+                                    Console.WriteLine("Correct!");
+                                    Console.WriteLine("Would you like to: ");
+                                    Console.WriteLine("1. Deal 3 cards again");
+                                    Console.WriteLine("2. Return to the main menu");
+                                    Console.Write("\nEnter your choice: ");
+                                    string input2 = Console.ReadLine();
+                                    Console.WriteLine();
+                                    switch (input2)
+                                    {
+                                        case "1":
+                                            hand = pack.Deal();
+                                            num1 = hand[0].Value;
+                                            num2 = hand[1].Value;
+                                            op = hand[2].Operator;
+                                            Console.WriteLine($"What is {num1} {op} {num2}?");
+                                            Console.Write("Enter your answer: ");
+                                            while (!int.TryParse(Console.ReadLine(), out answer))
+                                            {
+                                                Console.WriteLine("Invalid input");
+                                                Console.Write("Enter your answer: ");
+                                            }
+
+                                            if (Calculate(num1, num2, op) == answer)
+                                            {
+                                                Console.WriteLine("Correct! ");
+
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine("Incorrect! The answer is {0} ", Calculate(num1, num2, op));
+                                                
+                                            }
+                                            break;
+                                        case "2":
+                                            break;
+                                        default:
+                                            Console.WriteLine("Invalid input. Returning to main menu.");
+                                            break;
+                                    }
+                                }
+                               
                                 
 
                                
@@ -74,19 +104,14 @@ namespace tutorapp
                         case 2:
                             //quit
                             quit = true;
-                            Console.WriteLine("Thank you for playing!");
+                            Console.WriteLine("Thank you for using the Math Tutoring Application!");
                             break;
 
                         default:
                             Console.WriteLine("Invalid input");
                             break;
                     }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter a number");
-                }
-                    
+                }     
             }
            
 
