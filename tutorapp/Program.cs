@@ -19,9 +19,10 @@ namespace tutorapp
             bool quit = false;
             while (!quit)
             {
-                Console.WriteLine("Please Choose an option: ");
+                Console.WriteLine("\nPlease Choose an option: ");
                 Console.WriteLine("1. Start a new game");
                 Console.WriteLine("2. Quit");
+                Console.WriteLine("\nChoose an option number: ");
 
                 //get user input
                 string input = Console.ReadLine();
