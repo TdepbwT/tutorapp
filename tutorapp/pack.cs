@@ -46,6 +46,9 @@ namespace tutorapp
 
         public List<Card> Deal() // deal cards
         {
+            //shuffle the pack
+            Shuffle();
+
             List<Card> hand = new List<Card>(); // creating a list of cards
 
             // deal 2 number cards
